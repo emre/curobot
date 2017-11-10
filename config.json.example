@@ -1,0 +1,11 @@
+{
+  "rules": [
+    {"author": "fetch", "weight": 50.0, "vote_delay": 30},
+    {"author": "tach", "weight": 100.0, "vote_delay": 30}
+
+  ],
+  "keys": ["PRIVATE_KEY"],
+  "account": "emrebeyler",
+  "mysql_uri": "mysql+pymysql://root:pass@localhost/curobot",
+  "nodes": ["https://rpc.buildteam.io"]
+}
