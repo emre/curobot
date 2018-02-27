@@ -2,6 +2,7 @@ import argparse
 import json
 import logging
 import time
+import os
 from threading import Thread
 
 from steem import Steem
@@ -153,7 +154,10 @@ class TransactionListener:
 
 def listen(config):
     logger.info('Starting Curobot TX listener...')
-    steem = Steem(nodes=config.get("nodes"), keys=config["keys"])
+    steem = Steem(
+        nodes=config.get("nodes"),
+        keys=[os.getenv("POSTING_KEY")]
+    )
     tx_listener = TransactionListener(steem, config)
     tx_listener.run()
 
