@@ -32,16 +32,16 @@ $ POSTING_KEY=private_wif curobot config_file.json
 
 **rules**
 
-| author        | weight             | vote_delay          |    
-| ------------- |--------------------|---------------------|     
-| account username | vote power in percentage | X minutes before vote |
+| author        | weight             | vote_delay          | bad_tags   |
+| ------------- |--------------------|---------------------|---------------------
+| account username | vote power in percentage | X minutes before vote | list of blacklisted tag |
+
 
 **account**
 
 Voter account name
 
-
 **nodes**
 
-RPC nodes to connect. Default is rpc.buildteam.io.
+RPC nodes to connect. Default is api.steemit.com
 
