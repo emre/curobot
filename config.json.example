@@ -1,8 +1,10 @@
 {
   "rules": [
-    {"author": "foo", "weight": 50.0, "vote_delay": 30},
-    {"author": "bar", "weight": 100.0, "vote_delay": 30}
+    {"author": "foo", "weight": 1.0, "vote_delay": 3, "bad_tags": ["dmania"]},
+    {"author": "bar", "weight": 1.0, "vote_delay": 3, "bad_tags": ["dmania"]},
+    {"author": "emrebeyler", "weight": 100, "vote_delay": 1}
   ],
+  "minimum_vp": 80,
   "account": "emrebeyler",
   "nodes": ["https://api.steemit.com"]
 }
