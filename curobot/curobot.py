@@ -6,7 +6,10 @@ from threading import Thread
 
 from steem import Steem
 from steem.post import Post
+from steem.account import Account
 from steembase.exceptions import PostDoesNotExist
+from dateutil.parser import parse
+from datetime import datetime
 
 from threading import Semaphore
 
@@ -45,6 +48,17 @@ class TransactionListener:
     def block_interval(self):
         config = self.steem.get_config()
         return config["STEEMIT_BLOCK_INTERVAL"]
+
+    def get_current_vp(self):
+        account = Account(self.account, steemd_instance=self.steem)
+        last_vote_time = parse(account["last_vote_time"])
+        diff_in_seconds = (datetime.utcnow() - last_vote_time).total_seconds()
+        regenerated_vp = diff_in_seconds * 10000 / 86400 / 5
+        total_vp = (account["voting_power"] + regenerated_vp) / 100
+        if total_vp > 100:
+            total_vp = 100
+
+        return total_vp
 
     def run(self):
         last_block = self.last_block_num
@@ -88,6 +102,7 @@ class TransactionListener:
                     post.identifier,
                     rule["weight"],
                     account=self.account)
+                time.sleep(3)
                 self.mutex.release()
                 logger.info("Vote mutex released.")
             except Exception as error:
