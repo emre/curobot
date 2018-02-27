@@ -25,6 +25,7 @@ class TransactionListener:
         self.steem = steem
         self.account = config["account"]
         self.rules = config["rules"]
+        self.minimum_vp = config["minimum_vp"]
         self.authors = set([r["author"] for r in self.rules])
         self.mutex = Semaphore()
 
@@ -66,7 +67,10 @@ class TransactionListener:
         while True:
             while (self.last_block_num - last_block) > 0:
                 last_block += 1
-                self.check_block(last_block)
+                if self.minimum_vp and self.get_current_vp() < self.minimum_vp:
+                    logger.info("VP is not enough. Skipping.")
+                else:
+                    self.check_block(last_block)
 
             # Sleep for one block
             block_interval = self.block_interval
