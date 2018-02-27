@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='curobot',
-    version='0.0.6',
+    version='0.1',
     packages=["curobot",],
     url='http://github.com/emre/curobot',
     license='MIT',
@@ -14,5 +14,5 @@ setup(
             'curobot = curobot.curobot:main',
         ],
     },
-    install_requires=["dataset", "steem==0.18.103", "pymysql"]
+    install_requires=["dataset", "steem-dshot", "pymysql"]
 )
