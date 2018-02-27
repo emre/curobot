@@ -12,7 +12,7 @@ You're all set. (You need python 3.6+)
 
 
 ```bash
-$ curobot config_file.json
+$ POSTING_KEY=private_wif curobot config_file.json
 ```
 
 ### Configuration Details
@@ -20,8 +20,8 @@ $ curobot config_file.json
 ```javascript
 {
   "rules": [
-    {"author": "keepcalmanddread", "weight": 50.0, "vote_delay": 30},
-    {"author": "fetch", "weight": 50.0, "vote_delay": 30},
+    {"author": "foo", "weight": 50.0, "vote_delay": 30},
+    {"author": "bar", "weight": 50.0, "vote_delay": 30},
   ],
   "keys": ["PRIVATE_KEY"],
   "account": "emrebeyler",
@@ -36,17 +36,10 @@ $ curobot config_file.json
 | ------------- |--------------------|---------------------|     
 | account username | vote power in percentage | X minutes before vote |
 
-**keys**
-
-Your private posting key
-
 **account**
 
 Voter account name
 
-**mysql_uri** 
-
-mySQL connection string
 
 **nodes**
 
