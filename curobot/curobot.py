@@ -95,8 +95,12 @@ class TransactionListener:
 
         self.mutex.acquire()
         logger.info("Vote mutex acquired.")
+        time_elapsed = post.time_elapsed().total_seconds()
+        if time_elapsed > 302400:
+            logger.info("Post is old. %s", post.identifier)
+            return
 
-        elapsed_minutes = int(post.time_elapsed().seconds / 60)
+        elapsed_minutes = int(time_elapsed / 60)
         if elapsed_minutes >= rule["vote_delay"]:
             try:
                 post.commit.vote(
